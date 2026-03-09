@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叶茂盛- 大模型应用工程师主页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        // ========== 核心配置区（替换这里的内容即可） ==========
+        const PERSONAL_INFO = {
+            name: "叶茂盛",
+            jobTitle: "大模型应用工程师",
+            // 头像配置：替换为你的头像图片链接（推荐使用GitHub/图床的公开链接）
+            avatar: "https://picsum.photos/200/200", // 示例图片，替换成你的头像链接
+            phone: "17784489914",
+            email: "718439178@qq.com",
+            wechat: "MoreToCome_NeverStop",
+            github: "https://github.com/green-ai-tech",
+            location: "杭州市",
+            // 个人简介
+            bio: "5年AI领域研发经验，专注大模型应用落地，精通LLM微调、RAG、Agent等核心技术，具备从需求分析到产品落地的全流程能力。擅长将大模型技术与实际业务结合，曾主导电商智能客服、企业知识库问答等多个大模型应用项目，具备扎实的工程实现能力和业务拆解能力。",
+            // 核心技能（按熟练度排序）
+            skills: [
+                "大模型微调（LoRA/QLoRA）",
+                "检索增强生成（RAG）",
+                "智能体（Agent）开发",
+                "Prompt Engineering",
+                "Python/Shell编程",
+                "LangChain/LlamaIndex框架",
+                "向量数据库（Milvus/Pinecone）",
+                "大模型部署优化（TensorRT/ONNX）"
+            ],
+            // 项目经验
+            projects: [
+                {
+                    title: "企业级大模型知识库问答系统",
+                    period: "2024.01 - 2024.08",
+                    desc: [
+                        "基于LangChain+Qwen-7B构建企业内部知识库问答系统，支持文档解析、向量检索、多轮对话",
+                        "优化RAG流程，将答案准确率提升35%，响应时间缩短至2秒以内",
+                        "实现模型微调流程自动化，支持业务人员零代码更新知识库模型",
+                        "技术栈：Python、LangChain、Milvus、FastAPI、Qwen-7B、LoRA微调"
+                    ]
+                },
+                {
+                    title: "电商智能客服大模型应用",
+                    period: "2023.03 - 2023.12",
+                    desc: [
+                        "基于GPT-4/Tongyi千问开发电商智能客服系统，处理用户咨询、订单查询等场景",
+                        "设计Prompt模板库，提升客服回复准确率和一致性，降低人工介入率40%",
+                        "搭建模型效果评估体系，定期迭代优化模型性能",
+                        "技术栈：Python、FastAPI、MySQL、Redis、大模型API调用、Prompt工程"
+                    ]
+                }
+            ],
+            // 工作经历
+            experience: [
+                {
+                    company: "腾讯科技有限公司",
+                    position: "大模型应用开发工程师",
+                    period: "2022.06 - 至今",
+                    desc: [
+                        "负责大模型相关应用的设计、开发和落地，参与从需求分析到上线运维的全流程",
+                        "主导3个大模型应用项目，覆盖企业服务、电商等领域，服务用户超10万",
+                        "优化大模型调用成本，通过缓存、批量处理等方式降低API调用成本30%",
+                        "编写技术文档和培训材料，赋能团队其他成员掌握大模型应用开发技能"
+                    ]
+                },
+                {
+                    company: "华为人工智能研究院",
+                    position: "算法工程师",
+                    period: "2020.09 - 2022.05",
+                    desc: [
+                        "参与NLP相关算法研发，包括文本分类、命名实体识别等任务",
+                        "基于BERT/ERNIE等模型进行微调，应用于实际业务场景",
+                        "搭建算法评测平台，提升算法迭代效率"
+                    ]
+                }
+            ],
+            // 教育背景
+            education: [
+                {
+                    school: "浙江大学",
+                    major: "计算机科学与技术",
+                    degree: "硕士",
+                    period: "2017.09 - 2020.06"
+                },
+                {
+                    school: "浙江理工大学",
+                    major: "软件工程",
+                    degree: "本科",
+                    period: "2013.09 - 2017.06"
+                }
+            ]
+        };
+
+        // 页面加载后渲染内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 渲染个人信息（新增头像渲染）
+            document.getElementById('name').textContent = PERSONAL_INFO.name;
+            document.getElementById('job-title').textContent = PERSONAL_INFO.jobTitle;
+            document.getElementById('bio').textContent = PERSONAL_INFO.bio;
+            document.getElementById('location').textContent = PERSONAL_INFO.location;
+            document.getElementById('phone').textContent = PERSONAL_INFO.phone;
+            document.getElementById('email').textContent = PERSONAL_INFO.email;
+            document.getElementById('wechat').textContent = PERSONAL_INFO.wechat;
+            document.getElementById('github').href = PERSONAL_INFO.github;
+            document.getElementById('github').textContent = PERSONAL_INFO.github.split('/').pop();
+            // 渲染头像
+            if (PERSONAL_INFO.avatar) {
+                document.getElementById('avatar').src = PERSONAL_INFO.avatar;
+            }
+
+            // 渲染技能
+            const skillsContainer = document.getElementById('skills-list');
+            PERSONAL_INFO.skills.forEach(skill => {
+                const skillItem = document.createElement('div');
+                skillItem.className = 'bg-slate-100 text-slate-800 px-4 py-2 rounded-full text-sm';
+                skillItem.textContent = skill;
+                skillsContainer.appendChild(skillItem);
+            });
+
+            // 渲染项目经验
+            const projectsContainer = document.getElementById('projects-list');
+            PERSONAL_INFO.projects.forEach(project => {
+                const projectItem = document.createElement('div');
+                projectItem.className = 'mb-6 last:mb-0';
+                projectItem.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="text-lg font-semibold text-blue-800">${project.title}</h4>
+                        <span class="text-sm text-slate-500">${project.period}</span>
+                    </div>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1 pl-2">
+                        ${project.desc.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                `;
+                projectsContainer.appendChild(projectItem);
+            });
+
+            // 渲染工作经历
+            const expContainer = document.getElementById('experience-list');
+            PERSONAL_INFO.experience.forEach(exp => {
+                const expItem = document.createElement('div');
+                expItem.className = 'mb-6 last:mb-0';
+                expItem.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="text-lg font-semibold text-blue-800">${exp.position}</h4>
+                        <span class="text-sm text-slate-500">${exp.period}</span>
+                    </div>
+                    <p class="text-slate-600 mb-2">${exp.company}</p>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1 pl-2">
+                        ${exp.desc.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                `;
+                expContainer.appendChild(expItem);
+            });
+
+            // 渲染教育背景
+            const eduContainer = document.getElementById('education-list');
+            PERSONAL_INFO.education.forEach(edu => {
+                const eduItem = document.createElement('div');
+                eduItem.className = 'mb-4 last:mb-0';
+                eduItem.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-semibold text-blue-800">${edu.school}</h4>
+                            <p class="text-slate-600">${edu.major} | ${edu.degree}</p>
+                        </div>
+                        <span class="text-sm text-slate-500">${edu.period}</span>
+                    </div>
+                `;
+                eduContainer.appendChild(eduItem);
+            });
+        });
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .section-title {
+                @apply text-xl font-bold text-slate-800 border-b-2 border-blue-500 pb-2 mb-4;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <!-- 头部信息（新增头像区域） -->
+    <header class="bg-white shadow-md py-8 px-4 md:px-8 lg:px-16">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- 新增头像 + 姓名职位区域 -->
+                <div class="flex flex-col md:flex-row items-center mb-4 md:mb-0">
+                    <div class="mr-0 md:mr-6 mb-4 md:mb-0">
+                        <img id="avatar" src="https://picsum.photos/200/200" alt="个人头像" 
+                             class="w-24 h-24 rounded-full object-cover border-4 border-blue-100 shadow-sm">
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h1 id="name" class="text-3xl font-bold text-blue-800">张三</h1>
+                        <p id="job-title" class="text-lg text-slate-600 mt-1">大模型应用工程师</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 text-sm">
+                    <div class="flex items-center">
+                        <i class="fa fa-map-marker text-blue-500 mr-2"></i>
+                        <span id="location">北京市</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa fa-phone text-blue-500 mr-2"></i>
+                        <span id="phone">13800138000</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa fa-envelope text-blue-500 mr-2"></i>
+                        <span id="email">zhangsan@example.com</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa fa-wechat text-blue-500 mr-2"></i>
+                        <span id="wechat">zhangsan123456</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa fa-github text-blue-500 mr-2"></i>
+                        <a id="github" href="https://github.com/zhangsan" target="_blank" class="text-blue-600 hover:underline">YeMaosheng</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 text-slate-700 leading-relaxed" id="bio">
+                5年AI领域研发经验，专注大模型应用落地，精通LLM微调、RAG、Agent等核心技术，具备从需求分析到产品落地的全流程能力。擅长将大模型技术与实际业务结合，曾主导电商智能客服、企业知识库问答等多个大模型应用项目，具备扎实的工程实现能力和业务拆解能力。
+            </div>
+        </div>
+    </header>
+
+    <!-- 主体内容 -->
+    <main class="max-w-4xl mx-auto py-8 px-4 md:px-8 lg:px-16">
+        <!-- 核心技能 -->
+        <section class="mb-10">
+            <h2 class="section-title">核心技能</h2>
+            <div id="skills-list" class="flex flex-wrap gap-2 mt-4">
+                <!-- 技能项由JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 项目经验 -->
+        <section class="mb-10">
+            <h2 class="section-title">项目经验</h2>
+            <div id="projects-list" class="mt-4">
+                <!-- 项目项由JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 工作经历 -->
+        <section class="mb-10">
+            <h2 class="section-title">工作经历</h2>
+            <div id="experience-list" class="mt-4">
+                <!-- 工作经历项由JS动态生成 -->
+            </div>
+        </section>
+
+        <!-- 教育背景 -->
+        <section>
+            <h2 class="section-title">教育背景</h2>
+            <div id="education-list" class="mt-4">
+                <!-- 教育背景项由JS动态生成 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-slate-800 text-white py-6 px-4">
+        <div class="max-w-4xl mx-auto text-center text-sm">
+            <p>© 2025 <span id="footer-name">叶茂盛</span> - 大模型应用工程师求职主页</p>
+            <p class="mt-2 text-slate-400">所有信息均为真实有效</p>
+        </div>
+    </footer>
+</body>
+</html>
